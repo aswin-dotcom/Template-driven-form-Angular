@@ -1,0 +1,48 @@
+<div class="container">
+   <h1>Template driven Form</h1> 
+   <form #ampleform="ngForm" (submit)="handlesubmit(ampleform)" >
+    <div>
+        <label for="firstname">FirstName</label>
+        <input type="text" id="firstname" name="firstname" [(ngModel)]="Details.firstname" />
+    </div>
+    <div>
+        <label for="LastName">LastName</label>
+        <input type="text" id="LastName" name="LastName" [(ngModel)]="Details.LastName"/>
+    </div>
+    <div>
+        <label for="gender">Gender</label>
+        <input type="radio" id="gender" name="gender"  value="male" [(ngModel)]="Details.gender"/>male
+        <input type="radio" id="gender" name="gender"  value="female" [(ngModel)]="Details.gender"/>female
+    </div>
+    <div>
+        <label for="country">Country</label>
+        <select name="country" id="country" [(ngModel)]="Details.country" >
+            <option *ngFor="let i of countrynames" ng-value="i.id">{{i.name}}</option>
+           
+
+        </select>
+    </div>
+    <div>
+        <label for="Married">Married</label>
+        <input type="checkbox" id="Married" name="Married" [(ngModel)]="Details.Married"/>
+    </div> 
+    <div ngModelGroup="innerform">
+        <div>
+            <label for="adddres">Address</label>
+            <input type="text" id="adddres" name="address" [(ngModel)]="Details.address"/>
+        </div>
+        <div>
+            <label for="pincode">pincode</label>
+            <input type="text" id="pincode" name="pincode" [(ngModel)]="Details.pincode"/>
+        </div>
+
+
+    </div>
+    <div>
+        <button>Submit</button>
+    </div> 
+
+
+   </form>
+
+</div>
