@@ -3,16 +3,29 @@
    <form #ampleform="ngForm" (submit)="handlesubmit(ampleform)" >
     <div>
         <label for="firstname">FirstName</label>
-        <input type="text" id="firstname" name="firstname" [(ngModel)]="Details.firstname" />
+        <input type="text" id="firstname" name="firstname" #firstname="ngModel" [(ngModel)]="Details.firstname" required minlength="5" />
+        <span *ngIf="!firstname.valid&&(firstname.touched||firstname.dirty)">
+            <span *ngIf="firstname.errors?.['required']">required</span>
+            <span *ngIf="firstname.errors?.['minlength']">minimum 5 characters</span>
+        </span>
     </div>
     <div>
         <label for="LastName">LastName</label>
-        <input type="text" id="LastName" name="LastName" [(ngModel)]="Details.LastName"/>
+        <input type="text" id="LastName" name="LastName" #LastName="ngModel" [(ngModel)]="Details.LastName"/>
+        <span *ngIf="!LastName.valid&&(LastName.touched||LastName.dirty)">
+            <span *ngIf="LastName.errors?.['required']">required</span>
+            <span *ngIf="LastName.errors?.['minlength']">minimum 5 characters</span>
+        </span>
     </div>
     <div>
         <label for="gender">Gender</label>
-        <input type="radio" id="gender" name="gender"  value="male" [(ngModel)]="Details.gender"/>male
-        <input type="radio" id="gender" name="gender"  value="female" [(ngModel)]="Details.gender"/>female
+        <input type="radio" id="gender" name="gender" #gender="ngModel"  value="male" [(ngModel)]="Details.gender"/>male
+        <input type="radio" id="gender" name="gender"  #gender="ngModel" value="female" [(ngModel)]="Details.gender"/>female
+        <span *ngIf="!gender.valid&&(gender.touched||gender.dirty)">
+            <span *ngIf="gender.errors?.['required']">required</span>
+            <span *ngIf="gender.errors?.['minlength']">minimum 5 characters</span>
+        </span>
+        
     </div>
     <div>
         <label for="country">Country</label>
@@ -24,7 +37,11 @@
     </div>
     <div>
         <label for="Married">Married</label>
-        <input type="checkbox" id="Married" name="Married" [(ngModel)]="Details.Married"/>
+        <input type="checkbox" id="Married" #married="ngModel" name="Married" [(ngModel)]="Details.Married" required/>
+        <span *ngIf="!married.valid&&(married.touched||married.dirty)">
+            <span *ngIf="married.errors?.['required']">required</span>
+          
+        </span>
     </div> 
     <div ngModelGroup="innerform">
         <div>
@@ -39,7 +56,7 @@
 
     </div>
     <div>
-        <button>Submit</button>
+        <button [disabled]="!ampleform.valid">Submit</button>
     </div> 
 
 
